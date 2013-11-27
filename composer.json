@@ -1,0 +1,28 @@
+{
+    "name": "kumatch/keystore",
+    "description":"A simple key-base value storage.",
+    "type":"library",
+    "homepage": "https://github.com/kumatch/php-keystore",
+    "keywords":[ "storage" ],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Yosuke Kumakura",
+            "homepage": "https://github.com/kumatch"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "kumatch/path": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.*",
+        "kumatch/fs-temp": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Kumatch\\KeyStore": "src/"
+        }
+    }
+}
