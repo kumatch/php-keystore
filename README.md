@@ -101,9 +101,8 @@ $key = "foo/bar";
 $filename = "/path/to/output.jpg";
 
 $storage->export($key, $filename);
-// outputs a value to export file path.
+// outputs a value to file path.
 ```
-
 
 
 
