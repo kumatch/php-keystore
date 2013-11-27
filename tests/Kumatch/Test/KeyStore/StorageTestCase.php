@@ -34,7 +34,7 @@ class StorageTestCase extends \PHPUnit_Framework_TestCase
     protected function createAccessDriver()
     {
         return $this->getMockBuilder('Kumatch\KeyStore\AccessDriverInterface')
-            ->setMethods(array('write', 'append', 'read', 'exists', 'existsNamespace', 'remove'))
+            ->setMethods(array('write', 'append', 'read', 'exists', 'isNamespace', 'remove'))
             ->disableOriginalConstructor()
             ->getMock();
     }

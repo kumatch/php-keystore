@@ -87,7 +87,7 @@ class StorageWriteTest extends StorageTestCase
             ->with($this->equalTo("foo"))
             ->will($this->returnValue(false));
         $driver->expects($this->at(1))
-            ->method('existsNamespace')
+            ->method('isNamespace')
             ->will($this->returnValue(false));
         $driver->expects($this->at(2))
             ->method('exists')
@@ -116,14 +116,14 @@ class StorageWriteTest extends StorageTestCase
             ->with($this->equalTo("foo"))
             ->will($this->returnValue(false));
         $driver->expects($this->at(1))
-            ->method('existsNamespace')
+            ->method('isNamespace')
             ->will($this->returnValue(false));
         $driver->expects($this->at(2))
             ->method('exists')
             ->with($this->equalTo("foo/bar"))
             ->will($this->returnValue(false));
         $driver->expects($this->at(3))
-            ->method('existsNamespace')
+            ->method('isNamespace')
             ->with($this->equalTo("foo/bar"))
             ->will($this->returnValue(true));
         $driver->expects($this->never())

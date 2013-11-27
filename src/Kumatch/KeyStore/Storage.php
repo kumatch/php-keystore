@@ -194,7 +194,7 @@ class Storage implements StorageInterface
                 throw new ParentExistsException(sprintf('a key "%s" parent exists.', $key));
             }
 
-            if ($this->getDriver()->existsNamespace($parentKey)) {
+            if ($this->getDriver()->isNamespace($parentKey)) {
                 throw new NamespaceExistsException(sprintf('a key "%s" parent exists.', $key));
             }
         }

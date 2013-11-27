@@ -26,6 +26,12 @@ interface AccessDriverInterface
 
     /**
      * @param $key
+     * @return mixed
+     */
+    public function remove($key);
+
+    /**
+     * @param $key
      * @return bool
      */
     public function exists($key);
@@ -34,11 +40,6 @@ interface AccessDriverInterface
      * @param $key
      * @return bool
      */
-    public function existsNamespace($key);
+    public function isNamespace($key);
 
-    /**
-     * @param $key
-     * @return mixed
-     */
-    public function remove($key);
 }
