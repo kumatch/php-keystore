@@ -23,11 +23,20 @@ And install your dependencies.
     $ composer install
 
 
+Drivers
+----
+
+* [File system](https://github.com/kumatch/php-keystore-filesystem)
+
+
+
+
 Methods
 ----
 
 ```php
 use Kumatch\KeyStore\Storage;
+use Kumatch\KeyStore\Filesystem\Driver;  // driver
 ```
 
 ### __construct ($driver)
@@ -35,7 +44,7 @@ use Kumatch\KeyStore\Storage;
 Create a storage instance by storage driver.
 
 ```php
-$driver = new \Kumatch\KeyStore\FsDriver("/tmp");
+$driver = new Driver("/tmp");
 $storage = new Storage($driver);
 ```
 
