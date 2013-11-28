@@ -172,33 +172,43 @@ class Storage implements StorageInterface
      */
     protected function prepareWriteKey($key)
     {
-        $keys = explode('/', $key);
-        $count = count($keys);
-        $current = null;
-        $parents = array();
-
-        for ($i = 0; $i < $count - 1; ++$i) {
-            if (count($parents)) {
-                $current .= "/{$keys[$i]}";
-            } else {
-                $current = $keys[$i];
-            }
-
-            array_push($parents, $current);
-        }
-
-        foreach ($parents as $parent) {
+        foreach ($this->listParentKeys($key) as $parent) {
             $parentKey = $this->normalizeKey($parent);
 
             if ($this->getDriver()->exists($parentKey)) {
                 throw new ParentExistsException(sprintf('a key "%s" parent exists.', $key));
             }
+        }
 
-            if ($this->getDriver()->isNamespace($parentKey)) {
-                throw new NamespaceExistsException(sprintf('a key "%s" parent exists.', $key));
-            }
+        if ($this->getDriver()->isNamespace($key)) {
+            throw new NamespaceExistsException(sprintf('a key "%s" parent exists.', $key));
         }
 
         return true;
+    }
+
+    /**
+     * @param $key
+     * @return array
+     */
+    protected function listParentKeys($key)
+    {
+        $keys = explode('/', $key);
+        $count = count($keys);
+
+        $current = null;
+        $parentKeys = array();
+
+        for ($i = 0; $i < $count - 1; ++$i) {
+            if (count($parentKeys)) {
+                $current .= "/{$keys[$i]}";
+            } else {
+                $current = $keys[$i];
+            }
+
+            array_push($parentKeys, $current);
+        }
+
+        return $parentKeys;
     }
 }
