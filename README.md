@@ -27,6 +27,7 @@ Drivers
 ----
 
 * [File system](https://github.com/kumatch/php-keystore-filesystem)
+* [AWS S3](https://github.com/kumatch/php-keystore-s3)
 
 
 
