@@ -42,4 +42,18 @@ interface AccessDriverInterface
      */
     public function isNamespace($key);
 
+    /**
+     * @param $srcKey
+     * @param $dstKey
+     * @return bool
+     */
+    public function copy($srcKey, $dstKey);
+
+    /**
+     * @param $srcKey
+     * @param $dstKey
+     * @return bool
+     */
+    public function rename($srcKey, $dstKey);
+
 }

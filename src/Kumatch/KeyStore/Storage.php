@@ -133,6 +133,48 @@ class Storage implements StorageInterface
         file_put_contents($filename, $this->read($key));
     }
 
+    /**
+     * @param string $srcKey
+     * @param string $dstKey
+     * @return bool
+     * @throws Exception\InvalidArgumentException
+     */
+    public function copy($srcKey, $dstKey)
+    {
+        if (!$src = $this->normalizeKey($srcKey)) {
+            throw new InvalidArgumentException('invalid source key.');
+        }
+
+        if (!$dst = $this->normalizeKey($dstKey)) {
+            throw new InvalidArgumentException('invalid destination key.');
+        }
+
+        $this->prepareWriteKey($dst);
+
+        return $this->getDriver()->copy($src, $dst);
+    }
+
+    /**
+     * @param $srcKey
+     * @param $dstKey
+     * @return bool
+     * @throws Exception\InvalidArgumentException
+     */
+    public function rename($srcKey, $dstKey)
+    {
+        if (!$src = $this->normalizeKey($srcKey)) {
+            throw new InvalidArgumentException('invalid source key.');
+        }
+
+        if (!$dst = $this->normalizeKey($dstKey)) {
+            throw new InvalidArgumentException('invalid destination key.');
+        }
+
+        $this->prepareWriteKey($dst);
+
+        return $this->getDriver()->rename($src, $dst);
+    }
+
 
 
     /**
