@@ -114,6 +114,18 @@ $storage->export($key, $filename);
 // outputs a value to file path.
 ```
 
+### copy ($srcKey, $dstKey)
+
+### rename ($srcKey, $dstKey)
+
+```php
+$src = "foo/bar";
+$dst = "path/to/destination";
+
+$storage->copy($src, $dst);
+```
+
+
 
 
 License
