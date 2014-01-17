@@ -32,15 +32,17 @@ interface AccessDriverInterface
 
     /**
      * @param $key
-     * @return bool
+     * @param $filename
+     * @return mixed
      */
-    public function exists($key);
+    public function import($key, $filename);
 
     /**
      * @param $key
-     * @return bool
+     * @param $filename
+     * @return mixed
      */
-    public function isNamespace($key);
+    public function export($key, $filename);
 
     /**
      * @param $srcKey
@@ -55,5 +57,17 @@ interface AccessDriverInterface
      * @return bool
      */
     public function rename($srcKey, $dstKey);
+
+    /**
+     * @param $key
+     * @return bool
+     */
+    public function exists($key);
+
+    /**
+     * @param $key
+     * @return bool
+     */
+    public function isNamespace($key);
 
 }

@@ -109,11 +109,15 @@ class Storage implements StorageInterface
      */
     public function import($key, $filename)
     {
+        if (!$key = $this->normalizeKey($key)) {
+            throw new InvalidArgumentException('invalid key.');
+        }
+
         if (!file_exists($filename)) {
             throw new InvalidArgumentException(sprintf('file "%s" is not exists.', $filename));
         }
 
-        return $this->write($key, file_get_contents($filename));
+        return $this->getDriver()->import($key, $filename);
     }
 
     /**
@@ -124,13 +128,17 @@ class Storage implements StorageInterface
      */
     public function export($key, $filename)
     {
+        if (!$key = $this->normalizeKey($key)) {
+            throw new InvalidArgumentException('invalid key.');
+        }
+
         $dirname = Path::dirname($filename);
 
         if (!file_exists($dirname) && !@mkdir($dirname, 0755, true)) {
             throw new InvalidArgumentException(sprintf('Cannot create directory "%s".', $dirname));
         }
 
-        file_put_contents($filename, $this->read($key));
+        return $this->getDriver()->export($key, $filename);
     }
 
     /**

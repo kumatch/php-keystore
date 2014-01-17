@@ -50,4 +50,18 @@ interface StorageInterface
      * @return mixed
      */
     public function export($key, $filename);
+
+    /**
+     * @param string $srcKey
+     * @param string $dstKey
+     * @return mixed
+     */
+    public function copy($srcKey, $dstKey);
+
+    /**
+     * @param string $srcKey
+     * @param string $dstKey
+     * @return mixed
+     */
+    public function rename($srcKey, $dstKey);
 }
